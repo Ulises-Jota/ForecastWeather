@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.cursosandroidant.historicalweatherref
+package com.cursosandroidant.forecastweather
 
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
@@ -37,8 +37,8 @@ fun <T> LiveData<T>.getOrAwaitValue(
     var data: T? = null
     val latch = CountDownLatch(1)
     val observer = object : Observer<T> {
-        override fun onChanged(o: T?) {
-            data = o
+        override fun onChanged(value: T) {
+            data = value
             latch.countDown()
             this@getOrAwaitValue.removeObserver(this)
         }
